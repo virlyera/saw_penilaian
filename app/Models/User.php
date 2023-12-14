@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -41,4 +42,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function hasRole($roles)
+    {
+        $userRoles = is_array($this->role) ? $this->role : explode(',', $this->role);
+
+        if (is_array($roles)) {
+            // Check if the user has at least one of the specified roles
+            return count(array_intersect($userRoles, $roles)) > 0;
+        }
+
+        // Check if the user has the specified role
+        return in_array($roles, $userRoles);
+    }
 }

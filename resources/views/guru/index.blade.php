@@ -8,9 +8,11 @@
             <div class="col-lg">
                 <div class="card">
                     <div class="card-body">
+                        @if (Auth::user()->role == 'admin')
                         <a href="{{ url('/guru/create') }}" class="btn btn-primary mt-4"><i
                                 class="ri-add-circle-fill"></i><span> Tambah Guru</span></a>
                         <br><br>
+                        @endif
                         @if (session('flash_success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <i class="bi bi-check-circle me-1"></i>
@@ -41,7 +43,9 @@
                                     <th scope="col">Nama Guru</th>
                                     <th scope="col">NIP</th>
                                     <th scope="col">Status</th>
+                                    @if (Auth::user()->role == 'admin')
                                     <th scope="col">Aksi</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,6 +55,7 @@
                                         <td>{{ $guru->nama_guru }}</td>
                                         <td>{{ $guru->nip }}</td>
                                         <td>{{ $guru->status }}</td>
+                                        @if (Auth::user()->role == 'admin')
                                         <td>
                                             <a type="button" class="btn btn-primary" data-bs-toggle="modal"
                                                 data-bs-target="#edit-{{ $guru->id }}"><i
@@ -60,6 +65,7 @@
                                                 data-bs-target="#delete-{{ $guru->id }}"><i
                                                     class="ri-delete-bin-7-fill"></i></a>
                                         </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>

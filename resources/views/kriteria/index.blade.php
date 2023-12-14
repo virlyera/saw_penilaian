@@ -8,9 +8,11 @@
             <div class="col-lg">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ url('/kriteria/create') }}" class="btn btn-primary mt-4"><i
-                                class="ri-add-circle-fill"></i><span> Tambah Kriteria</span></a>
-                        <br><br>
+                        @if (Auth::user()->role == 'admin')
+                            <a href="{{ url('/kriteria/create') }}" class="btn btn-primary mt-4"><i
+                                    class="ri-add-circle-fill"></i><span> Tambah Kriteria</span></a>
+                            <br><br>
+                        @endif
                         @if (session('flash_add'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <i class="bi bi-check-circle me-1"></i>
@@ -48,7 +50,9 @@
                                     <th scope="col">Nama Kriteria</th>
                                     <th scope="col">Jenis Kriteria</th>
                                     <th scope="col">Bobot Kriteria</th>
-                                    <th scope="col">Aksi</th>
+                                    @if (Auth::user()->role == 'admin')
+                                        <th scope="col">Aksi</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,14 +62,16 @@
                                         <td>{{ $kriteria->nama_kriteria }}</td>
                                         <td>{{ $kriteria->jenis_kriteria }}</td>
                                         <td>{{ $kriteria->bobot_kriteria }}</td>
-                                        <td>
-                                            <a type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#edit-{{ $kriteria->id }}"><i
-                                                    class="ri-edit-2-fill"></i></a>
-                                            <a type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#delete-{{ $kriteria->id }}"><i
-                                                    class="ri-delete-bin-7-fill"></i></a>
-                                        </td>
+                                        @if (Auth::user()->role == 'admin')
+                                            <td>
+                                                <a type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#edit-{{ $kriteria->id }}"><i
+                                                        class="ri-edit-2-fill"></i></a>
+                                                <a type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#delete-{{ $kriteria->id }}"><i
+                                                        class="ri-delete-bin-7-fill"></i></a>
+                                            </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>

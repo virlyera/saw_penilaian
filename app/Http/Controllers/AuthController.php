@@ -22,15 +22,18 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
 
-            return redirect()->intended('/dashboard');
+            // $request->session()->regenerate();
+            $user = Auth::user(); // Ambil informasi pengguna setelah berhasil login
+
+            return redirect('/dashboard');
         }
 
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
     }
+
     public function showRegistrationForm()
     {
         return view('auth.register');
@@ -48,6 +51,6 @@ class AuthController extends Controller
 
         User::create($validatedData);
 
-        return redirect('/login')->with('success', 'Registrasi berhasil! Silakan login.');
+        return redirect('/')->with('success', 'Registrasi berhasil! Silakan login.');
     }
 }
