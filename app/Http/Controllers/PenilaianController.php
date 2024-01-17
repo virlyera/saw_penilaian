@@ -94,9 +94,10 @@ class PenilaianController extends Controller
             'periode' => 'required|numeric',
             'nilai.*.*' => 'required|numeric|min:1|max:100',
         ]);
-
+        // dd($request->all());
         // Matriks nilai
         $matriksNilai = $request->nilai;
+        // dd($matriksNilai);
 
         // ambil data guru
         $allGuru = Guru::all();
@@ -120,7 +121,7 @@ class PenilaianController extends Controller
         // Simpan matriks normalisasi ke dalam tabel penilaian
         foreach ($matriksNormalisasi as $guruId => $kriteriaSet) {
             foreach ($kriteriaSet as $kriteriaId => $normalisasi) {
-                $nilaiOption = $matriksNilai[$guruId][$kriteriaId];
+                $nilaiOption = $request->nilai[$guruId][$kriteriaId];
                 // Konversi nilai "kurang", "cukup", dan "baik" ke nilai numerik
                 switch ($nilaiOption) {
                     case 'Kurang':
@@ -135,6 +136,7 @@ class PenilaianController extends Controller
                     default:
                         $nilai = 0; // Default jika nilai tidak teridentifikasi
                 }
+                // dd($nilai);
                 Penilaian::create([
                     'guru_id' => $guruId,
                     'kriteria_id' => $kriteriaId,

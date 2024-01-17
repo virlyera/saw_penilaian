@@ -66,10 +66,10 @@
                                             <td>
                                                 <a type="button" class="btn btn-primary" data-bs-toggle="modal"
                                                     data-bs-target="#edit-{{ $kriteria->id }}"><i
-                                                        class="ri-edit-2-fill"></i></a>
+                                                        class="bx bxs-edit"></i></a>
                                                 <a type="button" class="btn btn-primary" data-bs-toggle="modal"
                                                     data-bs-target="#delete-{{ $kriteria->id }}"><i
-                                                        class="ri-delete-bin-7-fill"></i></a>
+                                                        class="bx bx-trash"></i></a>
                                             </td>
                                         @endif
                                     </tr>

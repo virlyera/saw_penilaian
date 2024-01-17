@@ -61,6 +61,7 @@
                                     <th scope="col">Peringkat Ke</th>
                                     <th scope="col">Nama Guru</th>
                                     <th scope="col">Nilai Terbobot</th>
+                                    <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -73,6 +74,10 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $allGuru->find($guruId)->nama_guru }}</td>
                                         <td>{{ number_format($nilaiTerbobot, 2) }}</td>
+                                        <td>
+                                            <a href="{{ route('cetak.hasil.penilaian', ['guru_id' => $guruId]) }}"
+                                                class="btn btn-success" target="_blank">Cetak</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

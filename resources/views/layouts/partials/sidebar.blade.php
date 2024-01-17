@@ -36,30 +36,19 @@
                 </a>
             </li>
         @endif
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#">
-                <i class="bi bi-journals"></i>
-                <span>Hasil Penilaian</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#user" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-person"></i><span>User</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="user" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="#">
-                        <i class="bi bi-circle"></i><span>Kelola User</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="bi bi-circle"></i><span>Logout</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
+        @if (Auth::user()->role == 'admin')
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#user" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-person"></i><span>User</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="user" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="{{ url('/user') }}">
+                            <i class="bi bi-circle"></i><span>Kelola User</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        @endif
     </ul>
 </aside>
