@@ -21,14 +21,24 @@ class CetakController extends Controller
 
         // $nilaiTerbobot = NilaiTerbobot::where('guru_id', $guru_id)->get();
         // $periode = NilaiTerbobot::where('guru_id', $guru_id)->value('periode');
-        $nilaiTerbobot = DB::table('nilai_terbobot')
-        ->where('guru_id', $guru_id)
-        ->pluck('nilai_terbobot')
-        ->toArray();
+        // $nilaiTerbobot = DB::table('nilai_terbobot')
+        // ->where('guru_id', $guru_id) 
+        // ->pluck('nilai_terbobot')
+        // ->toArray();
+        $periode = DB::table('nilai_terbobot')
+            ->where('guru_id', $guru_id)
+            ->value('periode');
+
+        $nilaiTerbobot = (float) DB::table('nilai_terbobot')
+            ->where('guru_id', $guru_id)
+            ->where('periode', $periode)
+            ->value('nilai_terbobot');
+            // dd($nilaiTerbobot);
+
 
         $periode = DB::table('nilai_terbobot')
-        ->where('guru_id', $guru_id)
-        ->value('periode');
+            ->where('guru_id', $guru_id)
+            ->value('periode');
         $nilaiSebelumHitung = $this->ambilDataNilaiSebelumHitung($guru_id, $periode);
 
         $pdf = new TCPDF();
@@ -38,7 +48,7 @@ class CetakController extends Controller
         $pdf->AddPage();
 
         // Tambahkan konten ke halaman PDF
-        $html = view('cetak.hasil_penilaian', compact('guru', 'nilaiTerbobot', 'dataKriteria', 'periode','nilaiSebelumHitung'))->render();
+        $html = view('cetak.hasil_penilaian', compact('guru', 'nilaiTerbobot', 'dataKriteria', 'periode', 'nilaiSebelumHitung'))->render();
         $pdf->writeHTML($html, true, false, true, false, '');
         return $pdf->Output('hasil_penilaian' . $guru->nama_guru . '.pdf', 'D');
     }

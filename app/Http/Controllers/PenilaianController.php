@@ -122,20 +122,8 @@ class PenilaianController extends Controller
         foreach ($matriksNormalisasi as $guruId => $kriteriaSet) {
             foreach ($kriteriaSet as $kriteriaId => $normalisasi) {
                 $nilaiOption = $request->nilai[$guruId][$kriteriaId];
-                // Konversi nilai "kurang", "cukup", dan "baik" ke nilai numerik
-                switch ($nilaiOption) {
-                    case 'Kurang':
-                        $nilai = 50;
-                        break;
-                    case 'Cukup':
-                        $nilai = 70;
-                        break;
-                    case 'Baik':
-                        $nilai = 90;
-                        break;
-                    default:
-                        $nilai = 0; // Default jika nilai tidak teridentifikasi
-                }
+
+                $nilai = $nilaiOption;
                 // dd($nilai);
                 Penilaian::create([
                     'guru_id' => $guruId,

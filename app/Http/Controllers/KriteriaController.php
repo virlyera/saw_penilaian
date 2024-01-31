@@ -49,11 +49,19 @@ class KriteriaController extends Controller
     }
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'nama_kriteria' => 'required',
-            'jenis_kriteria' => 'required',
-            'bobot_kriteria' => 'required|numeric|min:1|max:100'
-        ]);
+        $this->validate(
+            $request,
+            [
+                'nama_kriteria' => 'required|regex:/^[a-zA-Z ]+$/',
+                'jenis_kriteria' => 'required',
+                'bobot_kriteria' => 'required|numeric|min:1|max:100'
+            ],
+            [
+                'nama_kriteria.regex' => 'Nama kriteria tidak boleh mengandung angka atau simbol',
+                'nama_kriteria.required' => 'Nama kriteria harus diisi',
+                'bobot_kriteria.required' => 'Bobot Kriteria harus di isi'
+            ]
+        );
 
         if ($this->validateBobot($request->input('bobot_kriteria'))) {
             Kriteria::create([
@@ -100,11 +108,19 @@ class KriteriaController extends Controller
     public function update(Request $request, $id)
     {
         if ($request->isMethod('post')) {
-            $this->validate($request, [
-                'nama_kriteria' => 'required',
-                'jenis_kriteria' => 'required',
-                'bobot_kriteria' => 'required|numeric|min:1|max:100'
-            ]);
+            $this->validate(
+                $request,
+                [
+                    'nama_kriteria' => 'required|regex:/^[a-zA-Z ]+$/',
+                    'jenis_kriteria' => 'required',
+                    'bobot_kriteria' => 'required|numeric|min:1|max:100'
+                ],
+                [
+                    'nama_kriteria.regex' => 'Nama kriteria tidak boleh mengandung angka atau simbol',
+                    'nama_kriteria.required' => 'Nama kriteria harus diisi',
+                    'bobot_kriteria.required' => 'Bobot Kriteria harus di isi'
+                ]
+            );
 
             // Mendapatkan bobot kriteria yang sudah ada
             $existingBobot = Kriteria::where(['id' => $id])->value('bobot_kriteria');

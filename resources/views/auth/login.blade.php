@@ -69,28 +69,37 @@
 
                                     <form method="POST" action="{{ url('/') }}" class="row g-3 needs-validation"
                                         novalidate>
-                                            @csrf
+                                        @csrf
+                                        @if ($errors->any())
+                                            <div class="alert alert-danger">
+                                                <ul class="mb-0">
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        @endif
                                         <div class="col-12">
                                             <label for="email" class="form-label">Email</label>
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend">@</span>
                                                 <input type="text" name="email" class="form-control" id="email"
-                                                    required>
+                                                    >
                                             </div>
                                         </div>
 
                                         <div class="col-12">
                                             <label for="yourPassword" class="form-label">Password</label>
                                             <input type="password" name="password" class="form-control"
-                                                id="yourPassword" required>
+                                                id="yourPassword">
                                         </div>
                                         <div class="col-12">
                                             <button class="btn btn-primary w-100" type="submit">Login</button>
                                         </div>
                                     </form>
                                     <div class="col-12">
-                                        <p class="small mb-0">Don't have account? <a
-                                                href="{{ url('register') }}">Create an account</a></p>
+                                        <p class="small mb-0">Don't have account? <a href="{{ url('register') }}">Create
+                                                an account</a></p>
                                     </div>
 
                                 </div>

@@ -37,9 +37,12 @@ class GuruController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nip' => 'required|max:25|unique:guru',
-            'nama_guru' => 'required',
+            'nip' => ['required', 'max:25', 'unique:guru', 'regex:/^[^\pL\s]+$/'], // Menambahkan aturan regex
+            'nama_guru' => ['required', 'regex:/^[^\d]+$/'], // Menambahkan aturan regex untuk nama_guru
             'status' => 'required'
+        ], [
+            'nip.regex' => 'NIP tidak boleh mengandung huruf atau simbol.',
+            'nama_guru.regex' => 'Nama guru tidak boleh mengandung angka.'
         ]);
 
         Guru::create([

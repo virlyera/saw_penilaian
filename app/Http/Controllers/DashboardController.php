@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Kriteria;
 use App\Models\Penilaian;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class DashboardController extends Controller
 {
@@ -18,8 +20,9 @@ class DashboardController extends Controller
         // Hitung jumlah kriteria
         $jumlahKriteria = Kriteria::count();
         $jumlahUser = User::count();
-        // Ganti 'periode' dengan periode yang sesuai atau sesuaikan dengan logika Anda
+
         $periode = date('Y');
+
 
         // Ambil hasil penilaian dari masing-masing guru berdasarkan periode
         $hasilPenilaian = Penilaian::where('periode', $periode)->groupBy('guru_id')
@@ -27,6 +30,6 @@ class DashboardController extends Controller
             ->with('guru')
             ->get();
 
-        return view('/dashboard', compact('jumlahGuru', 'jumlahKriteria', 'hasilPenilaian','jumlahUser'));
+        return view('/dashboard', compact('jumlahGuru', 'jumlahKriteria', 'hasilPenilaian', 'jumlahUser'));
     }
 }

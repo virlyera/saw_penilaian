@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Svg\Tag\Circle;
+// use Svg\Tag\Circle;
+use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
@@ -31,12 +32,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $validateData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|unique:users|max:255',
-            'password' => 'required|string|min:4',
-            'role' => 'required'
-        ]);
+        $validateData = $request->validate(
+            [
+                'name' => 'required|string|max:255|regex:/^[a-zA-Z ]+$/',
+                'email' => 'required|string|email|unique:users|max:255',
+                'password' => 'required|string|min:4',
+            ],
+            [
+                'name.required' => 'Nama user harus diisi',
+                'name.regex' => 'Nama user tidak boleh mengandung angka atau simbol',
+                'emai.required' => 'Email harus diisi',
+                'email.email' => 'Email harus ber format alamat email yang benar',
+                'password.required' => 'Password harus diisi',
+                'password.min' => "Password minimal 4 karakter"
+            ]
+        );
 
         $validateData['password'] = Hash::make($validateData['password']);
         User::create($validateData);
@@ -66,16 +76,26 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         $data = $request->all();
-
-        User::where(['id' => $id])->update([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            // 'password' => $data['password'],
-            'role' => $data['role']
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255|regex:/^[a-zA-Z ]+$/',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            'password' => 'nullable|string|min:4',
+        ], [
+            'name.required' => 'Nama user harus diisi',
+            'name.regex' => 'Nama user tidak boleh mengandung angka atau simbol',
+            'email.required' => 'Email harus diisi',
+            'email.email' => 'Email harus berformat alamat email yang benar',
+            'password.min' => 'Password minimal 4 karakter'
         ]);
 
-        if (!empty($data['password'])) {
-            $updateData['password'] = Hash::make($data['password']);
+        $updateData = [
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            // 'role' => $validatedData['role']
+        ];
+
+        if (!empty($validatedData['password'])) {
+            $updateData['password'] = Hash::make($validatedData['password']);
         }
 
         User::where(['id' => $id])->update($updateData);

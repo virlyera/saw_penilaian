@@ -16,6 +16,26 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        // Validasi jika email atau password kosong
+        if (empty($request->email) || empty($request->password)) {
+            return back()->withErrors([
+                'email' => 'Email dan password harus diisi.',
+            ]);
+        }
+        // Validasi jika email kosong
+        if (empty($request->email)) {
+            return back()->withErrors([
+                'email' => 'Email harus diisi.',
+            ]);
+        }
+
+        // Validasi jika password kosong
+        if (empty($request->password)) {
+            return back()->withErrors([
+                'password' => 'Password harus diisi.',
+            ]);
+        }
+
         $credentials = $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string',
@@ -30,7 +50,7 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'Email atau password tidak sesuai. Mohon di cek kembali',
         ]);
     }
 

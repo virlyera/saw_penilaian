@@ -6,6 +6,37 @@
     <section class="section">
         <div class="row">
             <div class="col-lg">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Skala Nilai</h5>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Nilai</th>
+                                    <th>Keterangan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Kurang</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Cukup</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Baik</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Sangat Baik</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
                 <div class="card">
                     <div class="container mb-4">
                         <form action="{{ route('penilaian.store') }}" method="post">
@@ -40,9 +71,10 @@
                                                     <select name="nilai[{{ $guru->id }}][{{ $kriteria->id }}]"
                                                         class="form-select" required>
                                                         <option selected></option>
-                                                        <option value="50">Kurang</option>
-                                                        <option value="70">Cukup</option>
-                                                        <option value="90">Baik</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
                                                     </select>
                                                 </td>
                                             @endforeach
@@ -50,7 +82,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <button type="submit" class="btn btn-primary float-end">Simpan dan Hitung Nilai</button>
+                            <button type="submit" class="btn btn-primary float-end">Hitung Nilai</button>
                         </form>
                     </div>
                 </div>

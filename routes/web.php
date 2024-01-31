@@ -15,7 +15,7 @@ use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\UserController;
 
 
-Route::get('/dashboard', [DashboardController::class,'index'])->middleware(['auth', 'role:admin,kepala_sekolah']);
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'role:admin,kepala_sekolah']);
 
 // route registrasi dan login
 Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
@@ -57,5 +57,5 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/user/create', 'create')->middleware(['auth', 'role:admin']);
     Route::post('/user', 'store')->middleware(['auth', 'role:admin']);
     Route::match(['get', 'post'], '/user/{id}', 'update')->middleware(['auth', 'role:admin']);
-    Route::get('/delete/user/{id}', 'destroy')->middleware(['auth' . 'role:admin']);
+    Route::get('/delete/user/{id}', 'destroy')->middleware(['auth', 'role:admin']);
 });

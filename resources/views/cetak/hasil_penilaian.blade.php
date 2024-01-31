@@ -6,6 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hasil Penilaian Guru</title>
     <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:hover {
+            background-color: #ddd;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header h1 {
+            color: #333;
+        }
+
+        .section-title {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .section-content {
+            margin-top: 10px;
+        }
+
+        .signature {
+            margin-top: 50px;
+            text-align: right;
+        }
+
+        .footer {
+            margin-top: 20px;
+        }
+
         /* ... (style sebelumnya) ... */
 
         .signature {
@@ -52,7 +106,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                <p><strong>Nilai Terbobot:</strong> {{ number_format($nilaiTerbobot[0], 2) }}</p>
+                <p><strong>Nilai Terbobot:</strong> {{ number_format(floatval($nilaiTerbobot), 2) }}</p>
             </div>
         </div>
     </div>
