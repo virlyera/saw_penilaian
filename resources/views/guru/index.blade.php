@@ -43,6 +43,7 @@
                                     <th scope="col">Nama Guru</th>
                                     <th scope="col">NIP</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">Keterangan</th>
                                     @if (Auth::user()->role == 'admin')
                                         <th scope="col">Aksi</th>
                                     @endif
@@ -55,6 +56,7 @@
                                         <td>{{ $guru->nama_guru }}</td>
                                         <td>{{ $guru->nip }}</td>
                                         <td>{{ $guru->status }}</td>
+                                        <td>{{ $guru->keterangan }}</td>>
                                         @if (Auth::user()->role == 'admin')
                                             <td>
                                                 <a type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -119,6 +121,11 @@
                                                         <option value="Guru Mapel">Guru Mapel</option>
                                                         <option value="Guru Kelas">Guru Kelas</option>
                                                     </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Keterangan</label>
+                                                        <input type="text" name="keterangan"
+                                                        class="form-control @error('keterangan') is-invalid @enderror" id="nama" value="{{ $guru->keterangan }}">
                                                 </div>
                                         </div>
                                         <div class="modal-footer">

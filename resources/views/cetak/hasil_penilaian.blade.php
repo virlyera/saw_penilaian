@@ -113,13 +113,13 @@
 
     <div class="signature" style="text-align: left">
         <p><strong>Kepala Sekolah</strong></p>
-        <p style="margin-bottom: 20px"><strong>SD Negeri Pasirhalang</strong></p>
+        <p style="margin-bottom: 20px"><strong>SMK Daarut Taufiq</strong></p>
         <!-- Tambahkan isian tanda tangan atau nama kepala sekolah di bawah ini -->
         <p><strong>(Yuniarti, S.Pd)</strong></p>
     </div>
 
     <div class="footer">
-        <p>Laporan Hasil Penilaian Guru SD Negeri Pasirhalang Periode {{ $periode ?? 'Tidan ada data' }}.</p>
+        <p>Laporan Hasil Penilaian Guru SMK Daarut Taufiq Periode {{ $periode ?? 'Tidak ada data' }}.</p>
     </div>
     </div>
 </body>

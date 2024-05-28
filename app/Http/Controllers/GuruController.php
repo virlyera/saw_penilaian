@@ -39,7 +39,8 @@ class GuruController extends Controller
         $this->validate($request, [
             'nip' => ['required', 'max:25', 'unique:guru', 'regex:/^[^\pL\s]+$/'], // Menambahkan aturan regex
             'nama_guru' => ['required', 'regex:/^[^\d]+$/'], // Menambahkan aturan regex untuk nama_guru
-            'status' => 'required'
+            'status' => 'required',
+            'keterangan' => ''
         ], [
             'nip.regex' => 'NIP tidak boleh mengandung huruf atau simbol.',
             'nama_guru.regex' => 'Nama guru tidak boleh mengandung angka.'
@@ -48,7 +49,8 @@ class GuruController extends Controller
         Guru::create([
             'nip' => $request->input('nip'),
             'nama_guru' => $request->input('nama_guru'),
-            'status' => $request->status
+            'status' => $request->status,
+            'keterangan' => $request->keterangan
         ]);
 
         return redirect('/guru')->with('flash_success', 'Data Guru Berhasil Ditambahkan');
@@ -91,7 +93,8 @@ class GuruController extends Controller
             Guru::where(['id' => $id])->update([
                 'nip' => $data['nip'],
                 'nama_guru' => $data['nama_guru'],
-                'status' => $data['status']
+                'status' => $data['status'],
+                'keterangan' => $data['keterangan']
             ]);
 
             return redirect()->back()->with('flash_edit', 'Data Berhasil di Update');

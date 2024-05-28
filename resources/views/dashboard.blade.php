@@ -58,9 +58,8 @@
                         <li>Menghasilkan informasi visual seperti grafik untuk memudahkan analisis.</li>
                     </ul>
                     <p class="mt-3 text-muted">
-                        Aplikasi berbasis Web ini disusun oleh Susanto (NIM: 352141003) sebagai bagian dari penyelesaian
-                        skripsi di STIMIK
-                        IM Tahun 2024.
+                        Aplikasi berbasis Web ini disusun oleh Kelompok 3 sebagai bagian dari penyelesaian
+                        tugas Mata Kuliah Sistem Penunjang Keputusan di Universitas Nusa Mandiri Kramat 2024
                     </p>
                     </p>
                 </div>

@@ -19,18 +19,22 @@
                             <tbody>
                                 <tr>
                                     <td>1</td>
-                                    <td>Kurang</td>
+                                    <td>Sangat Kurang</td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
-                                    <td>Cukup</td>
+                                    <td>Kurang</td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
-                                    <td>Baik</td>
+                                    <td>Cukup</td>
                                 </tr>
                                 <tr>
                                     <td>4</td>
+                                    <td>Baik</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
                                     <td>Sangat Baik</td>
                                 </tr>
                             </tbody>
@@ -75,6 +79,7 @@
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
                                                         <option value="4">4</option>
+                                                        <option value="5">5</option>
                                                     </select>
                                                 </td>
                                             @endforeach

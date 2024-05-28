@@ -39,6 +39,11 @@
                                     <option selected value="Guru Kelas">Guru Kelas</option>
                                 </select>
                             </div>
+                            <div class="mb-3">
+                                <label class="form-label">Keterangan</label>
+                                    <input type="text" name="keterangan"
+                                    class="form-control @error('keterangan') is-invalid @enderror" id="nama" value="{{ old('keterangan') }}">
+                            </div>
                             <br>
                             <a href="{{ url('/guru') }}" class="btn btn-secondary"><i
                                     class="ri-arrow-go-back-line"></i><span> Batal</span></a>
