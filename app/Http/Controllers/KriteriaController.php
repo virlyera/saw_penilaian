@@ -52,11 +52,13 @@ class KriteriaController extends Controller
         $this->validate(
             $request,
             [
+                'kode_kriteria' => '',
                 'nama_kriteria' => 'required|regex:/^[a-zA-Z ]+$/',
                 'jenis_kriteria' => 'required',
                 'bobot_kriteria' => 'required|numeric|min:1|max:100'
             ],
             [
+                'kode_kriteria' => '',
                 'nama_kriteria.regex' => 'Nama kriteria tidak boleh mengandung angka atau simbol',
                 'nama_kriteria.required' => 'Nama kriteria harus diisi',
                 'bobot_kriteria.required' => 'Bobot Kriteria harus di isi'
@@ -65,6 +67,7 @@ class KriteriaController extends Controller
 
         if ($this->validateBobot($request->input('bobot_kriteria'))) {
             Kriteria::create([
+                'kode_kriteria' => $request->input('kode_kriteria'),
                 'nama_kriteria' => $request->input('nama_kriteria'),
                 'jenis_kriteria' => $request->jenis_kriteria,
                 'bobot_kriteria' => $request->input('bobot_kriteria')
@@ -111,11 +114,13 @@ class KriteriaController extends Controller
             $this->validate(
                 $request,
                 [
+                    'kode_kriteria' => '',
                     'nama_kriteria' => 'required|regex:/^[a-zA-Z ]+$/',
                     'jenis_kriteria' => 'required',
                     'bobot_kriteria' => 'required|numeric|min:1|max:100'
                 ],
                 [
+                    'kode_kriteria' => '',
                     'nama_kriteria.regex' => 'Nama kriteria tidak boleh mengandung angka atau simbol',
                     'nama_kriteria.required' => 'Nama kriteria harus diisi',
                     'bobot_kriteria.required' => 'Bobot Kriteria harus di isi'
@@ -130,6 +135,7 @@ class KriteriaController extends Controller
 
             if ($this->validateBobot($bobotDifference)) {
                 Kriteria::where(['id' => $id])->update([
+                    'kode_kriteria' => $request->input('kode_kriteria'),
                     'nama_kriteria' => $request->input('nama_kriteria'),
                     'jenis_kriteria' => $request->jenis_kriteria,
                     'bobot_kriteria' => $request->input('bobot_kriteria')

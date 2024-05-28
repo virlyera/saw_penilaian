@@ -11,6 +11,12 @@
                         <form class="form-control mt-4 mb-4" action="{{ url('/kriteria') }}" method="POST">
                             @csrf
                             <div class="mb-3">
+                                <label class="form-label">Kode Kriteria</label>
+                                <input type="text" name="kode_kriteria"
+                                    class="form-control @error('kode_kriteria') is-invalid @enderror" id="nip"
+                                    value="{{ old('kode_kriteria') }}">
+                            </div>
+                            <div class="mb-3">
                                 <label for="nama_kriteria" class="form-label">Nama Kriteria</label>
                                 <input type="text" name="nama_kriteria"
                                     class="form-control @error('nama_kriteria') is-invalid @enderror" id="nip"

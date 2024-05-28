@@ -47,9 +47,11 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
+                                    <th scope="col">Kode Kriteria</th>
                                     <th scope="col">Nama Kriteria</th>
                                     <th scope="col">Jenis Kriteria</th>
                                     <th scope="col">Bobot Kriteria</th>
+
                                     @if (Auth::user()->role == 'admin')
                                         <th scope="col">Aksi</th>
                                     @endif
@@ -59,6 +61,7 @@
                                 @foreach ($data as $kriteria)
                                     <tr>
                                         <th scope="row">{{ $loop->iteration }}</th>
+                                        <td>{{ $kriteria->kode_kriteria }}</td>
                                         <td>{{ $kriteria->nama_kriteria }}</td>
                                         <td>{{ $kriteria->jenis_kriteria }}</td>
                                         <td>{{ $kriteria->bobot_kriteria }}</td>
@@ -92,6 +95,11 @@
                                             <form class="form-control mt-4 mb-4"
                                                 action="{{ url('/kriteria/' . $kriteria->id) }}" method="POST">
                                                 @csrf
+                                                <div class="mb-3">
+                                                    <label for="kode_kriteria" class="form-label">Kode Kriteria</label>
+                                                    <input type="text" name="kode_kriteria" class="form-control"
+                                                        id="kode_kriteria" value="{{ $kriteria->kode_kriteria }}">
+                                                </div>
                                                 <div class="mb-3">
                                                     <label for="nama_kriteria" class="form-label">Nama Kriteria</label>
                                                     <input type="text" name="nama_kriteria" class="form-control"
