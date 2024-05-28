@@ -9,7 +9,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         th,
@@ -33,9 +33,9 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 500px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 10px;
         }
 
         .header h1 {
@@ -79,7 +79,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Hasil Penilaian Guru</h1>
+            <h2>Hasil Penilaian Guru</h2>
         </div>
 
         <div class="section">
@@ -88,11 +88,13 @@
                 <p><strong>NIP:</strong> {{ $guru->nip }}</p>
                 <p><strong>Nama Guru:</strong> {{ $guru->nama_guru }}</p>
                 <p><strong>Status:</strong> {{ $guru->status }}</p>
+                <p><strong>Keterangan:</strong> {{$guru->keterangan}}</p>
                 <p><strong>Periode:</strong> {{ $periode ?? 'Tidak ada data' }}</p>
                 <h3>Nilai untuk Setiap Kriteria</h3>
                 <table border="1">
                     <thead>
                         <tr>
+                            <th>Kode</th>
                             <th>Kriteria</th>
                             <th>Nilai</th>
                         </tr>
@@ -100,6 +102,7 @@
                     <tbody>
                         @foreach ($nilaiSebelumHitung as $kriteriaId => $nilai)
                             <tr>
+                                <td>{{ $dataKriteria->find($kriteriaId)->kode_kriteria }}</td>
                                 <td>{{ $dataKriteria->find($kriteriaId)->nama_kriteria }}</td>
                                 <td>{{ $nilai }}</td>
                             </tr>
@@ -115,7 +118,7 @@
         <p><strong>Kepala Sekolah</strong></p>
         <p style="margin-bottom: 20px"><strong>SMK Daarut Taufiq</strong></p>
         <!-- Tambahkan isian tanda tangan atau nama kepala sekolah di bawah ini -->
-        <p><strong>(Yuniarti, S.Pd)</strong></p>
+        <p><strong>(Faizal Muamar A Bahren, S.Pd.I)</strong></p>
     </div>
 
     <div class="footer">
